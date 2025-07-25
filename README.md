@@ -1,1 +1,77 @@
-# sf-car-collision-analysis
+## San Francisco Traffic Crashes Resulting In Injury Analysis (2005–2025)
+This repository doucments my process in formatting/analyzing a dataset with 60,000+ crash records in San Francisco using PostgreSQL. Original Dataset: [SF Traffic Crashes Resulting in Injuries](https://data.sfgov.org/Public-Safety/Traffic-Crashes-Resulting-in-Injury/ubvf-ztfx/about_data)
+
+## Database Setup
+
+The dataset was imported from a CSV into a PostgreSQL table using DBeaver. Since the dataset contains 63 columns, I first created the table manually with defined data types, then imported the CSV into the existing table to prevent any column type mismatches during import.
+
+**Table name**: `sf_crashes`
+
+```sql
+CREATE TABLE sf_crashes (
+    unique_id BIGINT PRIMARY KEY,
+    cnn_intrsctn_fkey BIGINT,
+    cnn_sgmt_fkey BIGINT,
+    case_id_pkey BIGINT,
+    tb_latitude REAL,
+    tb_longitude REAL,
+    geocode_source TEXT,
+    geocode_location TEXT,
+    collision_datetime TIMESTAMP,
+    collision_date TIMESTAMP,
+    collision_time TEXT,
+    accident_year TEXT,
+    month TEXT,
+    day_of_week TEXT,
+    time_cat TEXT,
+    juris TEXT,
+    officer_id TEXT,
+    reporting_district TEXT,
+    beat_number TEXT,
+    primary_rd TEXT,
+    secondary_rd TEXT,
+    distance INTEGER,
+    direction TEXT,
+    weather_1 TEXT,
+    weather_2 TEXT,
+    collision_severity TEXT,
+    type_of_collision TEXT,
+    mviw TEXT,
+    ped_action TEXT,
+    road_surface TEXT,
+    road_cond_1 TEXT,
+    road_cond_2 TEXT,
+    lighting TEXT,
+    control_device TEXT,
+    intersection TEXT,
+    vz_pcf_code TEXT,
+    vz_pcf_group TEXT,
+    vz_pcf_description TEXT,
+    vz_pcf_link TEXT,
+    number_killed INTEGER,
+    number_injured INTEGER,
+    street_view TEXT,
+    dph_col_grp TEXT,
+    dph_col_grp_description TEXT,
+    party_at_fault TEXT,
+    party1_type TEXT,
+    party1_dir_of_travel TEXT,
+    party1_move_pre_acc TEXT,
+    party2_type TEXT,
+    party2_dir_of_travel TEXT,
+    party2_move_pre_acc TEXT,
+    point TEXT,
+    data_as_of TIMESTAMP,
+    data_updated_at TIMESTAMP,
+    data_loaded_at TIMESTAMP,
+    analysis_neighborhood TEXT,
+    supervisor_district TEXT,
+    police_district TEXT,
+    current_police_districts TEXT,
+    current_supervisor_districts TEXT,
+    analysis_neighborhoods TEXT,
+    neighborhoods TEXT,
+    sf_find_neighborhoods TEXT
+);
+```
+
