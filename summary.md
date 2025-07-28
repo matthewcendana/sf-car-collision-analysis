@@ -117,6 +117,7 @@ ORDER BY accident_year;
   <img src="https://github.com/matthewcendana/sf-car-collision-analysis/blob/main/images/yearly_crashes.jpeg" alt="Yearly crashes bar chart" width="600">
 </div>
 
-*2019 had the most total crashes, while 2020 had the fewest (excluding 2025).*
-
+<div align="center">
+<em>2019 had the most total crashes, while 2020 had the fewest (excluding 2025).</em>
+</div>
 
