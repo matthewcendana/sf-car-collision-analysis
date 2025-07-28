@@ -1,9 +1,9 @@
 ## San Francisco Traffic Crashes Resulting In Injury Analysis (2005–2025)
-This repository doucments my process in formatting/analyzing a dataset with 60,000+ crash records in San Francisco using PostgreSQL. Original Dataset: [SF Traffic Crashes Resulting in Injuries](https://data.sfgov.org/Public-Safety/Traffic-Crashes-Resulting-in-Injury/ubvf-ztfx/about_data)
+This repository documents my process for formatting/analyzing a dataset with over 60,000 crash records in San Francisco using PostgreSQL and Excel. Original Dataset: [SF Traffic Crashes Resulting in Injuries](https://data.sfgov.org/Public-Safety/Traffic-Crashes-Resulting-in-Injury/ubvf-ztfx/about_data)
 
 ## Database Setup
 
-The dataset was imported from a CSV into a PostgreSQL table using DBeaver. Since the dataset contains 63 columns, I first created the table manually with defined data types, then imported the CSV into the existing table to prevent any column type mismatches during import.
+The dataset was imported from a CSV into a PostgreSQL table using DBeaver. Since the dataset contains 63 columns, I first created the table manually with defined data types, then imported the CSV into the existing table to prevent any column type mismatches.
 
 **Table name**: `sf_crashes`
 
@@ -74,4 +74,39 @@ CREATE TABLE sf_crashes (
     sf_find_neighborhoods TEXT
 );
 ```
+
+## Data Exploration
+
+```sql
+SELECT unique_id, COUNT(*) 
+FROM sf_crashes 
+WHERE unique_id IS NULL
+GROUP BY unique_id;
+```
+There were no null values for `unique_id`, meaning each crash in the dataset has a primary key. 
+
+```sql
+SELECT cnn_sgmt_fkey, COUNT(*) 
+FROM sf_crashes 
+WHERE cnn_sgmt_fkey IS null
+GROUP BY cnn_sgmt_fkey; 
+```
+There are 34,650 null values in `cnn_sgmt_fkey` (nearest street centerline segment key). According to the metadata, this field is left empty when a crash occurs at an intersection, indicating that 34,650 crashes in the dataset took place at intersections.
+
+```sql
+SELECT accident_year, COUNT(*) AS total_crashes
+FROM sf_crashes
+GROUP BY accident_year
+ORDER BY accident_year;
+```
+
+# Exploring Datetimes: 
+The earliest collision was recorded on January 1st, 2005, and the latest was on June 30th, 2025 (found via Excel).
+```sql
+SELECT accident_year, COUNT(*) AS total_crashes
+FROM sf_crashes
+GROUP BY accident_year
+ORDER BY accident_year;
+```
+
 
