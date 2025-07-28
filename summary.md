@@ -102,11 +102,17 @@ ORDER BY accident_year;
 
 ### Exploring Datetimes: 
 The earliest collision was recorded on January 1st, 2005, and the latest was on June 30th, 2025 (found via Excel).
+
+Finding the total number of crashes per year:
 ```sql
 SELECT accident_year, COUNT(*) AS total_crashes
 FROM sf_crashes
 GROUP BY accident_year
 ORDER BY accident_year;
 ```
+Output:
+![yearly_craashes](https://github.com/matthewcendana/sf-car-collision-analysis/blob/main/images/yearly_crashes.jpeg)
+2019 had the most total crashes, while 2020 had the fewest (excluding 2025).
+
 
 
