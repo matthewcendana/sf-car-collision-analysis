@@ -121,3 +121,20 @@ ORDER BY accident_year;
 <em>2019 had the most total crashes, while 2020 had the fewest (excluding 2025).</em>
 </div>
 
+## Crashes By Hour of Day:
+```sql
+SELECT day_of_week, COUNT(*) AS crashes_by_day
+FROM sf_crashes
+GROUP BY day_of_week
+--This is just for formatting the table from Monday - Sunday
+ORDER BY 
+  CASE day_of_week
+    WHEN 'Monday' THEN 1 
+    WHEN 'Tuesday' THEN 2
+    WHEN 'Wednesday' THEN 3
+    WHEN 'Thursday' THEN 4
+    WHEN 'Friday' THEN 5
+    WHEN 'Saturday' THEN 6
+    WHEN 'Sunday' THEN 7
+  END;
+```
