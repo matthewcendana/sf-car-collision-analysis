@@ -1,7 +1,7 @@
 # San Francisco Traffic Crashes Resulting In Injury Analysis (2005–2025)
 This repository documents my process for formatting/analyzing a dataset with over 60,000 crash records in San Francisco using PostgreSQL and Excel. Original Dataset: [SF Traffic Crashes Resulting in Injuries](https://data.sfgov.org/Public-Safety/Traffic-Crashes-Resulting-in-Injury/ubvf-ztfx/about_data)
 
-## Database Setup
+# Database Setup
 
 The dataset was imported from a CSV into a PostgreSQL table using DBeaver. Since the dataset contains 63 columns, I first created the table manually with defined data types, then imported the CSV into the existing table to prevent any column type mismatches.
 
@@ -75,7 +75,7 @@ CREATE TABLE sf_crashes (
 );
 ```
 
-## Data Exploration
+# Data Exploration
 
 ```sql
 SELECT unique_id, COUNT(*) 
@@ -110,7 +110,8 @@ FROM sf_crashes
 GROUP BY accident_year
 ORDER BY accident_year;
 ```
-### Output:
+
+## Output:
 
 ![yearly_craashes](https://github.com/matthewcendana/sf-car-collision-analysis/blob/main/images/yearly_crashes.jpeg)
 *2019 had the most total crashes, while 2020 had the fewest (excluding 2025).*
