@@ -113,8 +113,10 @@ ORDER BY accident_year;
 
 ## Output:
 
-![yearly_craashes](https://github.com/matthewcendana/sf-car-collision-analysis/blob/main/images/yearly_crashes.jpeg)
-*2019 had the most total crashes, while 2020 had the fewest (excluding 2025).*
+<div align="center">
+  <img src="https://github.com/matthewcendana/sf-car-collision-analysis/blob/main/images/yearly_crashes.jpeg" alt="Yearly crashes bar chart" width="600">
+</div>
 
+*2019 had the most total crashes, while 2020 had the fewest (excluding 2025).*
 
 
