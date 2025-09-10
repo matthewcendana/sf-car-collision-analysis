@@ -200,3 +200,36 @@ GROUP BY TRIM(weather_2)
 ORDER BY count DESC;
 ```
 Most of the collisions (60,678) had a 2nd weather condition of 'Not Stated'
+
+### Collision Severity:
+```sql
+SELECT 
+    collision_severity,
+    COUNT(*) AS crash_count
+FROM sf_crashes
+GROUP BY collision_severity
+ORDER BY crash_count DESC;
+```
+
+### Type of Collision:
+```sql
+SELECT 
+    type_of_collision,
+    COUNT(*) AS crash_count
+FROM sf_crashes
+GROUP BY type_of_collision
+ORDER BY crash_count DESC;
+```
+
+### Probable Cause:
+```sql
+SELECT 
+    TRIM(vz_pcf_description) AS cause_description,
+    COUNT(*) AS crash_count
+FROM sf_crashes
+GROUP BY TRIM(vz_pcf_description)
+ORDER BY crash_count DESC;
+```
+
+
+
