@@ -100,7 +100,7 @@ GROUP BY accident_year
 ORDER BY accident_year;
 ```
 
-### Exploring Datetimes: 
+## Exploring Datetimes: 
 The earliest collision was recorded on January 1st, 2005, and the latest was on June 30th, 2025 (found via Excel).
 
 Finding the total number of crashes per year:
@@ -111,7 +111,7 @@ GROUP BY accident_year
 ORDER BY accident_year;
 ```
 
-## Output:
+### Output:
 
 <div align="center">
   <img src="https://github.com/matthewcendana/sf-car-collision-analysis/blob/main/images/yearly_crashes.jpeg" alt="Yearly crashes bar chart" width="600">
@@ -120,6 +120,31 @@ ORDER BY accident_year;
 <div align="center">
 <em>2019 had the most total crashes, while 2020 had the fewest (excluding 2025).</em>
 </div>
+
+## Crashes by Month:
+```sql
+SELECT 
+    TO_CHAR(collision_datetime, 'Month') AS accident_month,
+    COUNT(*) AS crashes_by_month
+FROM sf_crashes
+GROUP BY accident_month
+ORDER BY 
+  CASE TRIM(TO_CHAR(collision_datetime, 'Month'))
+    WHEN 'January'   THEN 1
+    WHEN 'February'  THEN 2
+    WHEN 'March'     THEN 3
+    WHEN 'April'     THEN 4
+    WHEN 'May'       THEN 5
+    WHEN 'June'      THEN 6
+    WHEN 'July'      THEN 7
+    WHEN 'August'    THEN 8
+    WHEN 'September' THEN 9
+    WHEN 'October'   THEN 10
+    WHEN 'November'  THEN 11
+    WHEN 'December'  THEN 12
+  END;
+```
+
 
 ## Crashes By Day of The Week:
 ```sql
@@ -156,3 +181,22 @@ SET day_of_week = TRIM(TO_CHAR(collision_datetime, 'Day'))
 WHERE day_of_week IS NULL OR TRIM(day_of_week) = '';
 ```
 
+## Exploring Weather Conditions:
+```sql
+SELECT 
+    TRIM(weather_1) AS weather_condition,
+    COUNT(*) AS count
+FROM sf_crashes
+GROUP BY TRIM(weather_1)
+ORDER BY count DESC;
+```
+
+```sql
+SELECT 
+    TRIM(weather_2) AS weather_condition,
+    COUNT(*) AS count
+FROM sf_crashes
+GROUP BY TRIM(weather_2)
+ORDER BY count DESC;
+```
+Most of the collisions (60,678) had a 2nd weather condition of 'Not Stated'
