@@ -121,7 +121,7 @@ ORDER BY accident_year;
 <em>2019 had the most total crashes, while 2020 had the fewest (excluding 2025).</em>
 </div>
 
-## Crashes By Hour of Day:
+## Crashes By Day of The Week:
 ```sql
 SELECT day_of_week, COUNT(*) AS crashes_by_day
 FROM sf_crashes
@@ -138,3 +138,21 @@ ORDER BY
     WHEN 'Sunday' THEN 7
   END;
 ```
+
+Friday had the most crashes out of any day of the week (9,316) while Sunday had the least (7,683). 9 crashes had no recorded weekday:
+
+```sql
+SELECT *
+FROM sf_crashes
+WHERE day_of_week IS NULL
+   OR TRIM(day_of_week) = '';
+```
+
+Each of these datapoints was a valid entry with a unique_id. Using the collision_datetime variable, we can pinpoint what day of the week the crash occurred on and fill in these empty values:
+
+```sql
+UPDATE sf_crashes
+SET day_of_week = TRIM(TO_CHAR(collision_datetime, 'Day'))
+WHERE day_of_week IS NULL OR TRIM(day_of_week) = '';
+```
+
