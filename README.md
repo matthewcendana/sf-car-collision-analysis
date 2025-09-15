@@ -181,6 +181,17 @@ SET day_of_week = TRIM(TO_CHAR(collision_datetime, 'Day'))
 WHERE day_of_week IS NULL OR TRIM(day_of_week) = '';
 ```
 
+### Crashes by Hour of the Day:
+```sql
+SELECT 
+    TO_CHAR(collision_datetime, 'HH12 AM') || ' - ' ||
+    TO_CHAR(collision_datetime + interval '1 hour', 'HH12 AM') AS hour_range,
+    COUNT(*) AS total_crashes
+FROM sf_crashes
+GROUP BY hour_range
+ORDER BY total_crashes DESC;
+```
+
 ## Exploring Weather Conditions:
 ```sql
 SELECT 
@@ -190,6 +201,7 @@ FROM sf_crashes
 GROUP BY TRIM(weather_1)
 ORDER BY count DESC;
 ```
+
 
 ```sql
 SELECT 
@@ -230,6 +242,22 @@ FROM sf_crashes
 GROUP BY TRIM(vz_pcf_description)
 ORDER BY crash_count DESC;
 ```
+There were 249 unique cause descriptions. 'Unsafe speed for prevailing conditions' had the highest count of 11,703.
 
+
+Collision Hotspots:
+```sql
+SELECT 
+    analysis_neighborhood AS neighborhood,
+    COUNT(*) AS total_crashes,
+    SUM(CASE WHEN collision_severity = 'Fatal' THEN 1 ELSE 0 END) AS fatal_crashes,
+    SUM(CASE WHEN collision_severity = 'Injury (Complaint of Pain)' THEN 1 ELSE 0 END) AS injury_complaint_pain,
+    SUM(CASE WHEN collision_severity = 'Injury (Other Visible)' THEN 1 ELSE 0 END) AS injury_visible,
+    SUM(CASE WHEN collision_severity = 'Injury (Severe)' THEN 1 ELSE 0 END) AS injury_severe
+FROM sf_crashes
+GROUP BY analysis_neighborhood
+ORDER BY fatal_crashes DESC, injury_severe DESC, injury_visible DESC, injury_complaint_pain DESC
+LIMIT 15;
+```
 
 
