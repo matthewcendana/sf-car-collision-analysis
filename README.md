@@ -1,7 +1,7 @@
 # San Francisco Traffic Crashes Resulting In Injury Analysis (2005–2025)
 This repository documents my process for formatting/analyzing a dataset with over 60,000 crash records in San Francisco using PostgreSQL and Excel. Original Dataset: [SF Traffic Crashes Resulting in Injuries](https://data.sfgov.org/Public-Safety/Traffic-Crashes-Resulting-in-Injury/ubvf-ztfx/about_data)
 
-# Database Setup
+## Database Setup:
 
 The dataset was imported from a CSV into a PostgreSQL table using DBeaver. Since the dataset contains 63 columns, I first created the table manually with defined data types, then imported the CSV into the existing table to prevent any column type mismatches.
 
@@ -75,7 +75,7 @@ CREATE TABLE sf_crashes (
 );
 ```
 
-# Data Exploration
+## Data Exploration:
 
 ```sql
 SELECT unique_id, COUNT(*) 
@@ -100,7 +100,7 @@ GROUP BY accident_year
 ORDER BY accident_year;
 ```
 
-## Exploring Datetimes: 
+### Exploring Datetimes: 
 The earliest collision was recorded on January 1st, 2005, and the latest was on June 30th, 2025 (found via Excel).
 
 Finding the total number of crashes per year:
@@ -121,7 +121,7 @@ ORDER BY accident_year;
 <em>2019 had the most total crashes, while 2020 had the fewest (excluding 2025).</em>
 </div>
 
-## Crashes by Month:
+### Crashes by Month:
 ```sql
 SELECT 
     TO_CHAR(collision_datetime, 'Month') AS accident_month,
@@ -146,7 +146,7 @@ ORDER BY
 ```
 
 
-## Crashes By Day of The Week:
+### Crashes By Day of The Week:
 ```sql
 SELECT day_of_week, COUNT(*) AS crashes_by_day
 FROM sf_crashes
@@ -192,7 +192,7 @@ GROUP BY hour_range
 ORDER BY total_crashes DESC;
 ```
 
-## Exploring Weather Conditions:
+### Exploring Weather Conditions:
 ```sql
 SELECT 
     TRIM(weather_1) AS weather_condition,
@@ -245,7 +245,7 @@ ORDER BY crash_count DESC;
 There were 249 unique cause descriptions. 'Unsafe speed for prevailing conditions' had the highest count of 11,703.
 
 
-Collision Hotspots:
+### Collision Hotspots:
 ```sql
 SELECT 
     analysis_neighborhood AS neighborhood,
