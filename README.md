@@ -1,10 +1,8 @@
 # San Francisco Traffic Crashes Resulting In Injury Analysis (2005–2025)
-This repository documents my process for formatting/analyzing a dataset with over 60,000 crash records in San Francisco using PostgreSQL and Excel. Original Dataset: [SF Traffic Crashes Resulting in Injuries](https://data.sfgov.org/Public-Safety/Traffic-Crashes-Resulting-in-Injury/ubvf-ztfx/about_data)
-
-In addition to the SQL queries, I also created a dashboard in Tableau for visualization. 
-
+This repository documents my process for formatting/analyzing a dataset with over 60,000 crash records in San Francisco using PostgreSQL and Excel.  In addition to the SQL queries, I also created a dashboard in Tableau for visualization. 
 **Note:** I used an extension for a treemap that cannot be viewed on Tableau Public without a license.  
 
+[Orignial Dataset: SF Traffic Crashes Resulting in Injuries](https://data.sfgov.org/Public-Safety/Traffic-Crashes-Resulting-in-Injury/ubvf-ztfx/about_data)
 [View the dashboard on Tableau Public](https://public.tableau.com/views/sf-collision-dashboard/CollisionDatetimeDashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 ## Database Setup:
 
