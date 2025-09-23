@@ -1,11 +1,11 @@
 # San Francisco Traffic Crashes Resulting In Injury Analysis (2005–2025)
-This repository documents my  exploratory data analysis process for a dataset containing over 60,000 car collision records in San Francisco, utilizing PostgreSQL and Excel. In addition to the SQL queries, I also created a dashboard in Tableau for visualization. Check out the links below for more info!
+This repository documents my  exploratory data analysis process for a dataset containing over 60,000 car collision records in San Francisco, utilizing PostgreSQL and Excel. In addition to the SQL queries, I also created a dashboard in Tableau for visualizing the data. Check out the links below for more info!
 
 [Original Dataset: SF Traffic Crashes Resulting in Injuries](https://data.sfgov.org/Public-Safety/Traffic-Crashes-Resulting-in-Injury/ubvf-ztfx/about_data)
 
 [View the dashboard on Tableau Public](https://public.tableau.com/views/sf-collision-dashboard/CollisionDatetimeDashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
-**Note:** I used an extension for a treemap that cannot be viewed on Tableau Public without a license.  
+**Note:** I used an extension for a treemap that cannot be viewed on Tableau Public without a license. I currently don't have one, but please check the bottom of this repository for more information on the Tableau dashboard.
 
 ## Database Setup:
 
@@ -170,7 +170,7 @@ ORDER BY
   END;
 ```
 
-Friday had the most crashes out of any day of the week (9,316) while Sunday had the least (7,683). 9 crashes had no recorded weekday:
+Friday had the most crashes of any day of the week (9,316), while Sunday had the fewest (7,683). 9 crashes had no recorded weekday:
 
 ```sql
 SELECT *
@@ -265,5 +265,9 @@ GROUP BY analysis_neighborhood
 ORDER BY fatal_crashes DESC, injury_severe DESC, injury_visible DESC, injury_complaint_pain DESC
 LIMIT 15;
 ```
+
+## Tableau Screenshots and information:
+
+#
 
 
