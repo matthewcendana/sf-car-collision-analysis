@@ -120,7 +120,7 @@ ORDER BY accident_year;
 ### Output:
 
 <div align="center">
-  <img src="https://github.com/matthewcendana/sf-car-collision-analysis/blob/main/images/yearly_crashes.jpeg" alt="Yearly crashes bar chart" width="600">
+  <img src="https://github.com/matthewcendana/sf-car-collision-analysis/blob/main/images/crashes-by-year.jpeg" alt="Yearly crashes" width="600">
 </div>
 
 <div align="center">
@@ -150,7 +150,13 @@ ORDER BY
     WHEN 'December'  THEN 12
   END;
 ```
+<div align="center">
+  <img src="https://github.com/matthewcendana/sf-car-collision-analysis/blob/main/images/crashes-by-month.jpg" alt="Monthly crashes" width="600">
+</div>
 
+<div align="center">
+<em>October had the most total crashes, while July had the fewest.</em>
+</div>
 
 ### Crashes By Day of The Week:
 ```sql
@@ -169,7 +175,6 @@ ORDER BY
     WHEN 'Sunday' THEN 7
   END;
 ```
-
 Friday had the most crashes of any day of the week (9,316), while Sunday had the fewest (7,683). 9 crashes had no recorded weekday:
 
 ```sql
@@ -186,6 +191,15 @@ UPDATE sf_crashes
 SET day_of_week = TRIM(TO_CHAR(collision_datetime, 'Day'))
 WHERE day_of_week IS NULL OR TRIM(day_of_week) = '';
 ```
+
+<div align="center">
+<em>Final Output: .</em>
+</div>
+
+<div align="center">
+  <img src="https://github.com/matthewcendana/sf-car-collision-analysis/blob/main/images/crashes-by-day.jpg" alt="Crashes by day" width="600">
+</div>
+
 
 ### Crashes by Hour of the Day:
 ```sql
