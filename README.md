@@ -106,8 +106,14 @@ GROUP BY accident_year
 ORDER BY accident_year;
 ```
 
-### Exploring Datetimes: 
-The earliest collision was recorded on January 1st, 2005, and the latest was on June 30th, 2025 (found via Excel).
+## Exploring Datetimes: 
+```sql
+SELECT  
+    MIN(collision_datetime) AS earliest_collision,  
+    MAX(collision_datetime) AS latest_collision  
+FROM sf_crashes
+```
+The earliest collision was recorded on January 1st, 2005, and the latest was on June 30th, 2025
 
 Finding the total number of crashes per year:
 ```sql
