@@ -124,7 +124,7 @@ ORDER BY accident_year;
 </div>
 
 <div align="center">
-<em>2019 had the most total crashes, while 2020 had the fewest (excluding 2025).</em>
+<em>2019 had the most total crashes, while 2020 had the fewest likely due to quarantine (excluding 2025).</em>
 </div>
 
 ### Crashes by Month:
@@ -193,7 +193,7 @@ WHERE day_of_week IS NULL OR TRIM(day_of_week) = '';
 ```
 
 <div align="center">
-<em>Final Output: .</em>
+<em>Final Output: </em>
 </div>
 
 <div align="center">
@@ -211,6 +211,13 @@ FROM sf_crashes
 GROUP BY hour_range
 ORDER BY total_crashes DESC;
 ```
+<div align="center">
+  <img src="https://github.com/matthewcendana/sf-car-collision-analysis/blob/main/images/crashes-by-hour.jpg">
+</div>
+
+<div align="center">
+<em>*Ordered from most frequent hour intervals to least frequent, collisions peaked between 5–6 PM and during typical rush hour periods, highlighting the increased risk associated with heavy commuter traffic.</em>
+</div>
 
 ### Exploring Weather Conditions:
 ```sql
@@ -221,6 +228,13 @@ FROM sf_crashes
 GROUP BY TRIM(weather_1)
 ORDER BY count DESC;
 ```
+<div align="center">
+  <img src="https://github.com/matthewcendana/sf-car-collision-analysis/blob/main/images/weather1.jpg">
+</div>
+
+<div align="center">
+    <em> Clear was the most frequent weather condition. To understand whether weather actually affects collision risk, additional analysis would be needed since "clear" may simply be the most common overall condition. </em>
+</div>
 
 
 ```sql
@@ -243,6 +257,11 @@ GROUP BY collision_severity
 ORDER BY crash_count DESC;
 ```
 
+<div align="center">
+  <img src="https://github.com/matthewcendana/sf-car-collision-analysis/blob/main/images/severity.jpg">
+</div>
+
+
 ### Type of Collision:
 ```sql
 SELECT 
@@ -252,6 +271,14 @@ FROM sf_crashes
 GROUP BY type_of_collision
 ORDER BY crash_count DESC;
 ```
+
+<div align="center">
+  <img src="https://github.com/matthewcendana/sf-car-collision-analysis/blob/main/images/type%20of%20collision.jpg">
+</div>
+
+<div align="center">
+    <em> Broadside collisions were the most frequent. A broadside collision, also called a T-bone, happens when the front of one vehicle strikes the side of another, often at intersections. </em>
+</div>
 
 ### Probable Cause:
 ```sql
@@ -280,8 +307,40 @@ ORDER BY fatal_crashes DESC, injury_severe DESC, injury_visible DESC, injury_com
 LIMIT 15;
 ```
 
-## Tableau Screenshots and information:
+<div align="center">
+  <img src="https://github.com/matthewcendana/sf-car-collision-analysis/blob/main/images/collision-hotspots.jpg">
+</div>
 
-#
+<div align="center">
+    <em> This query counts the total number of collisions and breaks them down by severity (fatal, severe injury, etc.). Mission Street had the highest number of collisions. </em>
+</div>
 
+
+
+## Tableau Screenshots:
+
+### Collisions by Year Line Graph: 
+<div align="center">
+  <img src="https://github.com/matthewcendana/sf-car-collision-analysis/blob/main/images/tableau-1.jpg">
+</div>
+
+### Collisions by Hour Bar Chart:
+<div align="center">
+  <img src="https://github.com/matthewcendana/sf-car-collision-analysis/blob/main/images/tableau-2.jpg">
+</div>
+
+### Collisions by Day of Week + Severity Grouped Bar Chart: 
+<div align="center">
+  <img src="https://github.com/matthewcendana/sf-car-collision-analysis/blob/main/images/tableau-3.jpg">
+</div>
+
+###Type of Collision Tree Map: 
+<div align="center">
+  <img src="https://github.com/matthewcendana/sf-car-collision-analysis/blob/main/images/tableau-4.jpg">
+</div>
+
+### Top 15 Collision Neighborhoods Tree Map:
+<div align="center">
+  <img src="https://github.com/matthewcendana/sf-car-collision-analysis/blob/main/images/tableau-5.jpg">
+</div>
 
