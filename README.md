@@ -5,7 +5,7 @@ This repository documents my  exploratory data analysis process for a dataset co
 
 [View the dashboard on Tableau Public](https://public.tableau.com/views/sf-collision-dashboard/CollisionDatetimeDashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
-**Note:** I used an extension for a treemap that cannot be viewed on Tableau Public without a license. I currently don't have one, but please check the bottom of this repository for more information on the Tableau dashboard.
+**Note:** I used an extension for 2 treemaps that cannot be viewed on Tableau Public without a license. Check out the bottom of this repository to see them.
 
 ## Database Setup:
 
